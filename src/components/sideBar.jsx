@@ -17,6 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { DataArrayOutlined, DataObject, Home, HomeMiniRounded, Storage, SyncAlt, Timeline } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -92,6 +93,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -132,7 +134,7 @@ export default function MiniDrawer({ children }) {
         <Divider />
         <List>
           {['Beranda', 'Master Data', 'Transaksi', 'Laporan'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+            <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={()=> {navigate(index == 0 ? "/" : index == 1 ? "master" : index == 2 ? "transaksi" : index == 3 ? "laporan" : "/")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

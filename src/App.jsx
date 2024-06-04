@@ -6,7 +6,10 @@ import MiniDrawer from './components/sideBar'
 import Typography from '@mui/material/Typography'
 import HomePage from './Pages/HomePage'
 import { ThemeProvider, createTheme, makeStyles } from '@mui/material'
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Master from './Pages/Master'
+import MockData from './Pages/MockData'
+import Transaksi from './Pages/Transaksi'
 function App() {
   const [count, setCount] = useState(0)
   const theme = createTheme({
@@ -19,16 +22,26 @@ function App() {
       },
     },
   });
-
-  
-
   return (
     <>
-      <ThemeProvider theme={theme}>
 
-        <MiniDrawer>
+      <ThemeProvider theme={theme}>
+        {/* <MiniDrawer>
           <HomePage />
-        </MiniDrawer>
+        </MiniDrawer> */}
+
+        <BrowserRouter>
+          <MiniDrawer>
+            <Routes>
+              <Route path='/' exact element={<HomePage />}></Route>
+              <Route path='/master' exact element={<Master />}></Route>
+              <Route path='/mockdata' exact element={<MockData />}></Route>
+              <Route path='/transaksi' exact element={<Transaksi />}></Route>
+            </Routes>
+          </MiniDrawer>
+        </BrowserRouter>
+
+
       </ThemeProvider>
     </>
   )
